@@ -7,6 +7,9 @@ open Shared
 /// An implementation of the Shared IServerApi protocol.
 /// Can require ASP.NET injected dependencies in the constructor and uses the Build() function to return value of `IServerApi`.
 type ServerApi(logger: ILogger<ServerApi>, config: IConfiguration) =
+    let testError = "TEST ERROR"
+    do logger.LogError testError
+    
     member this.Counter() =
         async {
             logger.LogInformation("Executing {Function}", "counter")
